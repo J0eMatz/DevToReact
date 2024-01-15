@@ -1,13 +1,16 @@
+import { data } from "autoprefixer";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
-  const URL_MONGODB_USERS = "http://localhost:3002/users/";
+  const URL_MONGODB_USERS = "http://localhost:3002/posts/";
 
   const [urlImage, setURLImage] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [tags, setTags] = useState("");
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const actualdate = new Date();
   const militime = actualdate.getTime();
@@ -42,7 +45,21 @@ export default function CreatePost() {
         description: content,
         date: dateNowString,
       }),
-    });
+      headers: {
+        "Content-type": "application/json;charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data?.msg === "Publicacion creado") {
+          alert("Post has been created");
+          navigate("/");
+        } else {
+          alert("Error, try again or contact your admin");
+          navigate("/newpost");
+          setIsLoading(false);
+        }
+      });
   }
 
   return (
@@ -79,7 +96,7 @@ export default function CreatePost() {
 
       <input
         type="submit"
-        className="border rounded-md h-60 w-5/6 bg-blue-700 text-white"
+        className="border rounded-md h-10 w-5/6 bg-blue-700 text-white"
         value={isLoading ? "Creating post ...." : "Create"}
       />
     </form>
