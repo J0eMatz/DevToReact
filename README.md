@@ -1,8 +1,10 @@
-# React + Vite
+# DEV TO deployed in REACT + VITE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a basic programming sample, to create a social web page.
+In this case you can explore the methods to create diferent components as a login form,
+request for create new users, explore the POST and GET methods to get the info and present
+to the users.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Also you can explore the use of tecnologies such tailwind, react, vite. And talking about
+REACT you can explore the tools such react router, useEffect, useState, fetch, localStorage
+and others.
