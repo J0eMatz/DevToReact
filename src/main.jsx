@@ -7,6 +7,7 @@ import Login from "./pages/Login.jsx";
 import CreateAccount from "./pages/Createaccount.jsx";
 import Postdetail from "./pages/Postdetail.jsx";
 import Navbar from "./components/Navbar.jsx";
+import NewPost from "./pages/Newpost.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,16 @@ const router = createBrowserRouter([
   {
     path: "/post/:id",
     element: <Postdetail />,
+    children: [
+      {
+        path: "",
+        element: <Navbar />,
+      },
+    ],
+  },
+  {
+    path: "/newpost",
+    element: <NewPost />,
     children: [
       {
         path: "",

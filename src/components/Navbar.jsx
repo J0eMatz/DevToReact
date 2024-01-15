@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("token");
+  });
 
   function Login() {
     navigate("/Login");
