@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import github from "../assets/github.svg";
+import google from "../assets/google.svg";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,10 +21,11 @@ export default function Login() {
       <h1 className="font-bold text-3xl mt-6">Join the DEV Community</h1>
       <p>DEV Community is a community of 1,236,828 amazing developers</p>
 
-      <button className="border w-2/5 h-12 rounded-lg border text-sm font-semibold  hover:bg-gray-100">
-        Continue with GitHub
+      <button className="flex flex-row justify-center items-center gap-4 border w-2/5 h-12 rounded-lg border text-sm font-semibold  hover:bg-gray-100">
+        <img src={github} className="w-9 h-9" alt="" /> Continue with GitHub
       </button>
-      <button className="border w-2/5 h-12 rounded-lg border text-sm font-semibold  hover:bg-gray-100">
+      <button className="flex flex-row justify-center items-center gap-4 border w-2/5 h-12 rounded-lg border text-sm font-semibold  hover:bg-gray-100">
+        <img src={google} className="w-9 h-9" alt="" />
         Continue with Google
       </button>
 

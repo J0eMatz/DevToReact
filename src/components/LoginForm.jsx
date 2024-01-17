@@ -41,7 +41,7 @@ export default function LoginForm() {
           localStorage.setItem("token", data.token);
           setisLoading(false);
           setisFailed(false);
-          navigate("/");
+          navigate(`/`);
         } else {
           setisLoading(false);
           setisFailed(true);

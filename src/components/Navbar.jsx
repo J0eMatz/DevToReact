@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Navbar() {
   let [isToken, setIstoken] = useState(false);
   const navigate = useNavigate();
+  let token = window.localStorage.getItem("token");
 
-  useEffect(() => {
-    const token = window.localStorage.getItem("token");
+  function tokenInfo() {
+    const [Header, Payload, Signature] = token.split(".");
+    const infoPayload = atob(Payload);
+    const infObject = JSON.parse(infoPayload);
+    console.log(infObject);
+    return infObject;
+  }
 
-    if (token) {
-      setIstoken(true);
-    }
-  }, []);
+  function Logout() {
+    window.localStorage.removeItem("token");
+    navigate("/login");
+  }
 
   function Login() {
     navigate("/Login");
@@ -28,6 +34,12 @@ export default function Navbar() {
   function Createpost() {
     navigate("/newpost");
   }
+
+  useEffect(() => {
+    if (token) {
+      setIstoken(true);
+    }
+  }, []);
 
   return (
     <nav className="bg-white/80 h-14 flex flex-row gap-5 p-4 shadow items-center">
@@ -47,13 +59,25 @@ export default function Navbar() {
       {isToken && (
         <>
           <button
-            className="w-20 h-10 rounded-md  hover:bg-sky-100 hover:underline underline-offset-2 hover:text-blue-800 ml-auto"
+            className="w-24 h-10 rounded-md  hover:bg-blue-800 hover:underline underline-offset-2 ml-auto bg-blue-700 text-white"
             onClick={Createpost}
           >
             Create post
           </button>
 
-          <img src="" alt="" className="rounded-full w-10 h-10 mr-32" />
+          <div
+            className="flex flex-row border rounded-full bg-gray-100 hover:bg-blue-200 cursor-pointer mr-32 w-40"
+            onClick={Logout}
+          >
+            <img
+              src={tokenInfo()?.avatar}
+              alt=""
+              className="rounded-full w-10 h-10"
+            />
+            <p className="flex flex-col justify-center items-center w-36 h-10 ml-2">
+              Log out {tokenInfo()?.user_name}
+            </p>
+          </div>
         </>
       )}
 

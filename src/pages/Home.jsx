@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Navbar></Navbar>
       <main className="grid grid-cols-12 gap-4 justify-center bg-gray-100">
-        <div className="col-start-2 col-span-2">
+        <div className="col-start-2 col-span-2 mt-8">
           <Firstaside />
         </div>
 
