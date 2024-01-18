@@ -64,13 +64,17 @@ export default function CreatePost() {
 
   return (
     <form className="flex flex-col gap-5 w-5/6" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Add URL cover image of your post"
-        className="border rounded-md h-10 w-5/6"
-        onChange={onImageChange}
-        value={urlImage}
-      />
+      <div className="flex flex-row">
+        <p className="px-3 py-2 border bg-gray-100 border-gray-300 rounded-l-lg">
+          Add a url image
+        </p>
+        <input
+          type="text"
+          className="border rounded-md h-10 w-3/5"
+          onChange={onImageChange}
+          value={urlImage}
+        />
+      </div>
 
       <input
         type="text"
@@ -86,7 +90,7 @@ export default function CreatePost() {
         onChange={onTagsChange}
         value={tags}
       />
-      <input
+      <textarea
         type="text"
         placeholder="Write your post here..."
         className="border rounded-md h-60 w-5/6"

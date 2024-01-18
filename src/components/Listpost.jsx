@@ -1,6 +1,11 @@
 const URL_MONGODB = "http://localhost:3002/posts/";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import heart from "../assets/heart.svg";
+import horse from "../assets/unicorn.svg";
+import fire from "../assets/fire.svg";
+import hands from "../assets/hands.svg";
+import explote from "../assets/exploding-head.svg";
 
 export default function Listpost() {
   const [posts, setPosts] = useState([]);
@@ -37,18 +42,27 @@ export default function Listpost() {
                   <p className="font-thin">{post.time}</p>
                 </div>
               </div>
-              <div className="mt-3">
+              <div className="mt-2 p-4">
                 <Link to={`/post/${post._id}`} className="font-bold text-3xl">
                   {post.title}
                 </Link>
-                <div className="flex">
+                <div className="flex mt-2">
                   <ul className="flex font-light">
                     <li>{post.tags}</li>
                   </ul>
-                  <ul className="flex gap-2 ml-2">
-                    <li>20 Reactions</li>
+                </div>
+                <div className="mt-2">
+                  <ul className="flex flex-row gap-3 ml-2">
+                    <div className=" flex ">
+                      <img src={heart} alt="" />
+                      <img src={explote} alt="" />
+                      <img src={horse} alt="" />
+                      <img src={hands} alt="" />
+                      <img src={fire} alt="" />
+                      <p className=" pl-1">45 reactions</p>
+                    </div>
                     <li>10 Coments</li>
-                    <li>Time Read</li>
+                    <li className="ml-72">Time Read</li>
                   </ul>
                 </div>
               </div>

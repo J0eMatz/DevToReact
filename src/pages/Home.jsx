@@ -1,6 +1,7 @@
 import Firstaside from "../components/Firstaside";
 import Listpost from "../components/Listpost";
 import Navbar from "../components/Navbar";
+import Secondaside from "../components/Secondaside";
 
 export default function Home() {
   return (
@@ -11,17 +12,17 @@ export default function Home() {
           <Firstaside />
         </div>
 
-        <section className="col-span-6 mt-8">
+        <section className="col-span-6 mt-7">
           <div>
             <div>
-              <ul className="flex gap-10 mb-3">
-                <li>
+              <ul className="flex gap-6 mb-2">
+                <li className="flex items-center rounded-lg font-bold hover:bg-white hover:text-blue-700 h-9">
                   <p>RELEVANT</p>
                 </li>
-                <li>
+                <li className="flex items-center rounded-lg  hover:bg-white hover:text-blue-700 h-9">
                   <p>LATEST</p>
                 </li>
-                <li>
+                <li className="flex items-center rounded-lg  hover:bg-white hover:text-blue-700 h-9">
                   <p>TOP</p>
                 </li>
               </ul>
@@ -32,8 +33,8 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="col-end-12 col-span-2">
-          <aside>SEGUNDO ASIDE</aside>
+        <div className="mt-7 col-end-12 col-span-2">
+          <Secondaside />
         </div>
       </main>
     </>

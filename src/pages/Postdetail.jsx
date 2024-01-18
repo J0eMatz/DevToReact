@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import Fasidepost from "../components/Fasidepost";
+import Sasidepost from "../components/Sasidepost";
 
 export default function Postdetail() {
   const [post, setPost] = useState({});
@@ -20,7 +22,9 @@ export default function Postdetail() {
     <>
       <Outlet />
       <main className="grid grid-cols-12 gap-4 justify-center bg-gray-100">
-        <div className="col-start-2 col-span-1">PRIMER ASIDE </div>
+        <div className="col-start-2 col-span-1">
+          <Fasidepost />
+        </div>
 
         <section className="col-span-6 mt-8 rounded-md border bg-white">
           <div>
@@ -46,8 +50,8 @@ export default function Postdetail() {
           </div>
         </section>
 
-        <div className="col-end-12 col-span-2">
-          <aside>SEGUNDO ASIDE</aside>
+        <div className="mt-4 col-end-12 col-span-3">
+          <Sasidepost />
         </div>
       </main>
     </>
