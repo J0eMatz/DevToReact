@@ -16,6 +16,7 @@ export default function Listpost() {
       .then((response) => response.json())
       .then((x) => {
         setPosts(x.data);
+        console.log(x.data);
       });
   }, []);
 
@@ -39,7 +40,7 @@ export default function Listpost() {
                 />
                 <div>
                   <h4 className="font-bold">{post.author}</h4>
-                  <p className="font-thin">{post.time}</p>
+                  <p className="font-thin">{post.date}</p>
                 </div>
               </div>
               <div className="mt-2 p-4">
@@ -59,10 +60,16 @@ export default function Listpost() {
                       <img src={horse} alt="" />
                       <img src={hands} alt="" />
                       <img src={fire} alt="" />
-                      <p className=" pl-1">45 reactions</p>
+                      <p className=" pl-1">{post.reactions} Reactions</p>
                     </div>
                     <li>10 Coments</li>
-                    <li className="ml-72">Time Read</li>
+                    <li className="ml-64">
+                      {parseInt(
+                        (new Date() - post.dateMiliseconds) / 3600000,
+                        10
+                      )}{" "}
+                      hours read
+                    </li>
                   </ul>
                 </div>
               </div>

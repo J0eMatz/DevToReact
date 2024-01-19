@@ -45,13 +45,13 @@ export default function Postdetail() {
             <div className="mt-2">
               <h1 className="font-extrabold text-3xl mt-2">{post.title}</h1>
               <p className="mt-4 font-thin">{post.tags}</p>
-              <p className="mt-4 text-xl text-justify">{post.body}</p>
+              <p className="mt-4 text-xl text-justify">{post.description}</p>
             </div>
           </div>
         </section>
 
         <div className="mt-4 col-end-12 col-span-3">
-          <Sasidepost />
+          <Sasidepost username={post.author} avatar={post.picture} />
         </div>
       </main>
     </>

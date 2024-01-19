@@ -1,10 +1,16 @@
-import { data } from "autoprefixer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bold from "../assets/bold.svg";
+import latin from "../assets/latin.svg";
+import link from "../assets/link.svg";
+import list from "../assets/list.svg";
+import H from "../assets/H.svg";
+import marks from "../assets/marks.svg";
+import image from "../assets/image.svg";
 
 export default function CreatePost() {
-  const URL_MONGODB_USERS = "http://localhost:3002/posts/";
-
+  const URL_MONGODB_POSTS = "http://localhost:3002/posts/";
+  let token = window.localStorage.getItem("token");
   const [urlImage, setURLImage] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [tags, setTags] = useState("");
@@ -12,10 +18,13 @@ export default function CreatePost() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const actualdate = new Date();
-  const militime = actualdate.getTime();
-  const dateNow = new Date();
-  const dateNowString = dateNow.toDateString();
+  function tokenInfo() {
+    const [Header, Payload, Signature] = token.split(".");
+    const infoPayload = atob(Payload);
+    const infObject = JSON.parse(infoPayload);
+    console.log(infObject);
+    return infObject;
+  }
 
   function onImageChange(event) {
     setURLImage(event.target.value);
@@ -36,7 +45,14 @@ export default function CreatePost() {
     event.preventDefault();
     setIsLoading(true);
 
-    fetch(URL_MONGODB_USERS, {
+    let randomNumber = Math.floor(Math.random() * 50);
+    const actualdate = new Date();
+    const militime = actualdate.getTime();
+    const dateNowString = actualdate.toDateString();
+    const author = tokenInfo()?.user_name;
+    const picture = tokenInfo()?.avatar;
+
+    fetch(URL_MONGODB_POSTS, {
       method: "POST",
       body: JSON.stringify({
         url: urlImage,
@@ -44,6 +60,10 @@ export default function CreatePost() {
         tags: [tags],
         description: content,
         date: dateNowString,
+        reactions: randomNumber,
+        dateMiliseconds: militime,
+        picture: picture,
+        author: author,
       }),
       headers: {
         "Content-type": "application/json;charset=UTF-8",
@@ -90,6 +110,21 @@ export default function CreatePost() {
         onChange={onTagsChange}
         value={tags}
       />
+
+      <div className=" bg-white w-5/6 h-10 flex items-center">
+        <div className="flex justify-between my-2 mx-16">
+          <div className=" flex gap-2">
+            <img className=" p-2" src={bold} alt="" />
+            <img className=" p-2" src={latin} alt="" />
+            <img className=" p-2" src={link} alt="" />
+            <img className=" p-2" src={list} alt="" />
+            <img className=" p-2" src={H} alt="" />
+            <img className=" p-2" src={marks} alt="" />
+            <img className=" p-2" src={image} alt="" />
+          </div>
+        </div>
+      </div>
+
       <textarea
         type="text"
         placeholder="Write your post here..."
